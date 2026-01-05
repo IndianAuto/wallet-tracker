@@ -325,6 +325,103 @@
     }
     .pk-warning h4 { color: #f85149; margin-bottom: 5px; }
     .pk-warning p { color: #7d8590; font-size: 13px; }
+
+    /* External Links */
+    .external-links {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #21262d;
+    }
+    .external-links a {
+      color: #7d8590;
+      text-decoration: none;
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background: #21262d;
+      transition: all 0.2s;
+    }
+    .external-links a:hover {
+      color: #e6edf3;
+      background: #30363d;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .app { padding: 15px; }
+
+      .header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+      }
+      .header h1 { text-align: center; font-size: 24px; }
+      .header-actions {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+      .header-actions button {
+        padding: 10px 8px;
+        font-size: 12px;
+      }
+
+      .total-balance { padding: 20px; }
+      .total-balance .amount { font-size: 32px; }
+
+      .wallets-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .wallet-card { padding: 15px; }
+      .wallet-header {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .wallet-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .wallet-name { font-size: 16px; }
+
+      .balance-main {
+        margin: 10px -15px;
+        padding: 12px 15px;
+      }
+      .balance-main .balance-value { font-size: 20px; }
+
+      .wallet-card > div:last-child {
+        justify-content: center;
+      }
+
+      .external-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .modal {
+        margin: 15px;
+        padding: 20px;
+        max-height: calc(100vh - 30px);
+      }
+      .modal h2 { font-size: 18px; }
+
+      .form-row { flex-direction: column; }
+
+      .lock-box { padding: 25px; }
+      .lock-screen h1 { font-size: 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .header-actions {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .total-balance .amount { font-size: 28px; }
+      .wallet-actions button { padding: 5px 8px; font-size: 11px; }
+      .wallet-card > div:last-child button { padding: 8px 10px; font-size: 11px; }
+    }
   </style>
 </head>
 <body>
@@ -1015,6 +1112,10 @@
             ${w.type !== 'funding' && hasFunding ? `<button class="btn-small btn-warning" onclick="showQuickFund('${w.address}')">Fund</button>` : ''}
             ${w.type === 'funding' ? `<button class="btn-small btn-secondary" onclick="showCollectAll('${w.address}')">Collect</button>` : ''}
             <button class="btn-small btn-secondary" onclick="resetPnL('${w.address}')" title="Reset P&L">↺</button>
+          </div>
+          <div class="external-links">
+            <a href="https://polymarket.com/profile/${w.address}" target="_blank" rel="noopener">Polymarket</a>
+            <a href="https://polygonscan.com/address/${w.address}#tokentxns" target="_blank" rel="noopener">PolygonScan</a>
           </div>
         </div>
       `;
